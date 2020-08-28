@@ -23,8 +23,7 @@ import { MODES } from './sharedState.model';
         useFactory: (messageService, model) => {
             const subject = new Subject<SharedState>();
             subject.subscribe(m => messageService.reportMessage(
-                // tslint:disable-next-line:triple-equals
-                    new Message(MODES[m.mode] + (m.id != undefined
+                    new Message(MODES[m.mode] + (m.id !== undefined
                         ? ` ${model.getProduct(m.id).name}` : '')))
                 );
             return subject;
