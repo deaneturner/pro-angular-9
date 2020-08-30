@@ -8,6 +8,9 @@ import { TodoItem } from './todoItem';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  showComplete = false;
+
   private list: TodoList = new TodoList('Bob', [
       new TodoItem('Go for a run', true),
       new TodoItem('Get flowers'),
@@ -24,7 +27,7 @@ export class AppComponent {
 
   get items(): readonly TodoItem [] {
       return this.list.items
-        .filter((item) => !item.complete);
+        .filter((item) => this.showComplete || !item.complete);
   }
 
   addItem(item): void {
