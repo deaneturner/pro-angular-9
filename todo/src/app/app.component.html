@@ -1,8 +1,8 @@
 <h3 class="bg-primary text-center text-white p-2">
   {{ username }}'s To Do List
-  <h6 class="mt-1">{{ itemCount }} Items</h6>
+  <h6 class="mt-1">{{ itemCount }}  Incomplete Items</h6>
 </h3>
-<table>
+<table class="table table-bordered table-striped table-sm">
   <thead>
   <tr>
     <th>#</th>
@@ -11,10 +11,14 @@
   </tr>
   </thead>
   <tbody>
-  <tr>
-  <td>1</td>
-  <td>description</td>
-  <td>true</td>
+  <tr *ngFor="let item of items; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ item.task }}</td>
+    <td><input type="checkbox" [(ngModel)]="item.complete"></td>
+    <td [ngSwitch]="item.complete">
+      <span *ngSwitchCase="true">Yes</span>
+      <span *ngSwitchDefault>No</span>
+    </td>
   </tr>
   </tbody>
 </table>
