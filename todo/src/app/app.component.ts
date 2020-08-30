@@ -26,4 +26,10 @@ export class AppComponent {
       return this.list.items
         .filter((item) => !item.complete);
   }
+
+  addItem(item): void {
+    if (item) {
+      this.list.addItem(item);
+    }
+  }
 }

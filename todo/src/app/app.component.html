@@ -2,6 +2,16 @@
   {{ username }}'s To Do List
   <h6 class="mt-1">{{ itemCount }}  Incomplete Items</h6>
 </h3>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+      <input class="form-control" type="text" placeholder="Enter Task here." #todoText>
+    </div>
+    <div class="col-auto">
+      <button class="btn bg-primary" (click)="addItem(todoText.value)">Add</button>
+    </div>
+  </div>
+</div>
 <table class="table table-bordered table-striped table-sm">
   <thead>
   <tr>
