@@ -21,7 +21,7 @@ export class StoreComponent {
     return this.repository.getCategories();
   }
 
-  changeCategory(newCategory: string) {
+  changeCategory(newCategory?: string) {
     this.selectedCategory = newCategory;
   }
 }
