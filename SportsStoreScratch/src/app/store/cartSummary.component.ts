@@ -7,6 +7,6 @@ import { Cart } from '../model/cart.model';
   templateUrl: 'cartSummary.component.html'
 })
 export class CartSummaryComponent {
-  constructor(private cart: Cart) {
+  constructor(public cart: Cart) {
   }
 }
