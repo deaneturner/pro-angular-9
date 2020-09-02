@@ -25,7 +25,12 @@
           {{ product.description }}
         </div>
       </div>
-      {{products.length}} Products
+      <div class="btn-group float-right">
+        <button *ngFor="let pageNumber of pageNumbers" class="btn btn-outline-primary"
+                [class.active]="pageNumber === selectedPage" (click)="changePage(pageNumber)">
+          {{ pageNumber }}
+        </button>
+      </div>
     </div>
   </div>
 </div>

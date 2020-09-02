@@ -8,9 +8,9 @@ import { Component } from '@angular/core';
   templateUrl: 'store.component.html'
 })
 export class StoreComponent {
-  private selectedCategory: string = null;
-  private productsPerPage = 4;
-  private selectedPage = 1;
+  public selectedCategory: string = null;
+  public productsPerPage = 4;
+  public selectedPage = 1;
 
   constructor(private repository: ProductRepository) {
   }
