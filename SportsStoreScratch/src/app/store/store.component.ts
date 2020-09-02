@@ -9,12 +9,16 @@ import { Component } from '@angular/core';
 })
 export class StoreComponent {
   private selectedCategory: string = null;
+  private productsPerPage = 4;
+  private selectedPage = 1;
 
   constructor(private repository: ProductRepository) {
   }
 
   get products(): Product[] {
-    return this.repository.getProducts(this.selectedCategory);
+    const pageIndex = (this.selectedPage - 1) * this.productsPerPage;
+    return this.repository.getProducts(this.selectedCategory)
+      .splice(pageIndex, pageIndex + this.productsPerPage);
   }
 
   get categories(): string[] {
@@ -23,5 +27,19 @@ export class StoreComponent {
 
   changeCategory(newCategory?: string) {
     this.selectedCategory = newCategory;
+  }
+
+  changePage(newPage: number) {
+    this.selectedPage = newPage;
+  }
+
+  changePageSize(newPageSize: number) {
+    this.productsPerPage = newPageSize;
+  }
+
+  get pageNumbers(): number[] {
+    return Array(
+      Math.ceil(this.repository.getProducts(this.selectedCategory).length / this.productsPerPage))
+      .fill(0).map((x, i) => i + 1);
   }
 }
