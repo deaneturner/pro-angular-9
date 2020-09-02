@@ -34,14 +34,14 @@ export class StoreComponent {
   }
 
   changePageSize(newPageSize: number) {
-    // Number(html event passing ?)
+    /* Care must be taken when receiving data values from HTML elements
+     *to ensure they are of the expected type - thus Number()
+     */
     this.productsPerPage = Number(newPageSize);
     this.changePage(1);
   }
 
-  get pageNumbers(): number[] {
-    return Array(
-      Math.ceil(this.repository.getProducts(this.selectedCategory).length / this.productsPerPage))
-      .fill(0).map((x, i) => i + 1);
+  get pageCount(): number {
+    return Math.ceil(this.repository.getProducts(this.selectedCategory).length / this.productsPerPage);
   }
 }
