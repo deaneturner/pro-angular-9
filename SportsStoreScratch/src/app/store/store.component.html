@@ -25,11 +25,24 @@
           {{ product.description }}
         </div>
       </div>
-      <div class="btn-group float-right">
-        <button *ngFor="let pageNumber of pageNumbers" class="btn btn-outline-primary"
-                [class.active]="pageNumber === selectedPage" (click)="changePage(pageNumber)">
-          {{ pageNumber }}
-        </button>
+      <div>
+        <div class="form-inline float-left mr-1">
+          <select class="form-control" (change)="changePageSize($event.target.value)"
+                  [value]="productsPerPage">
+            <option value="3">3 per page</option>
+            <option value="4">4 per page</option>
+            <option value="5">5 per page</option>
+            <option value="6">6 per page</option>
+            <option value="7">7 per page</option>
+            <option value="8">8 per page</option>
+          </select>
+        </div>
+        <div class="btn-group float-right">
+          <button *ngFor="let pageNumber of pageNumbers" class="btn btn-outline-primary"
+                  [class.active]="pageNumber === selectedPage" (click)="changePage(pageNumber)">
+            {{ pageNumber }}
+          </button>
+        </div>
       </div>
     </div>
   </div>
