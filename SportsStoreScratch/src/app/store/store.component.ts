@@ -46,7 +46,7 @@ export class StoreComponent {
     return Math.ceil(this.repository.getProducts(this.selectedCategory).length / this.productsPerPage);
   }
 
-  addProductToCart(product: Product, quantity: number) {
+  addProductToCart(product: Product, quantity: number = 1) {
     this.cart.addLine(product, quantity);
   }
 }
