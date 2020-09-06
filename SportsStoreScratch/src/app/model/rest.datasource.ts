@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, pipe } from 'rxjs';
 import { Product } from './product.model';
 import { Order } from './order.model';
@@ -26,15 +26,47 @@ export class RestDataSource {
     return this.http.post<Order>(this.baseUrl + 'orders', order);
   }
 
+  saveProduct(product: Product): Observable<Product> {
+    return this.http.put<Product>(this.baseUrl + '/products', product, this.getOptions());
+  }
+
+  updateProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(`this.baseUrl/product/${product.id}`, product, this.getOptions());
+  }
+
+  deleteProduct(id: number): Observable<Product> {
+    return this.http.delete<Product>(`this.baseUrl/products/${id}`, this.getOptions());
+  }
+
+  getOrders(): Observable<Order[]> {
+    return this.http.get<Order[]>(this.baseUrl + '/orders', this.getOptions());
+  }
+
+  deleteOrder(id: number): Observable<Order> {
+    return this.http.delete<Order>(`${this.baseUrl}/orders/${id}`);
+  }
+
+  updateOrder(order: Order): Observable<Order> {
+    return this.http.post<Order>(`${this.baseUrl}\orders\${order.id}`, order, this.getOptions());
+  }
   authenticate(user: string, pass: string): Observable<boolean> {
     return this.http.post<any>(this.baseUrl + '/login', {
       name: user,
       password: pass
     }).pipe(
       map((response) => {
-        this.auth_token = response.success ? response.token : null;
-        return response.success;
-      }
-    ));
+          this.auth_token = response.success ? response.token : null;
+          return response.success;
+        }
+      ));
+  }
+
+  private getOptions() {
+    return {
+      headers: new HttpHeaders({
+        'Authorization':
+          `Bearer<${this.auth_token}>`
+      })
+    };
   }
 }
