@@ -9,8 +9,8 @@ import { AuthService } from '../../model/auth.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  public username: string;
-  public password: string;
+  public username = 'admin';
+  public password = 'secret';
   public errorMessage: string;
 
   constructor(private router: Router, private authService: AuthService) {
