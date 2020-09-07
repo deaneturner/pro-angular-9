@@ -41,7 +41,7 @@ export class ProductRepository {
       this.restDataSource.updateProduct(product)
         .subscribe((p) => {
           this.products.splice(this.products
-            .findIndex((p) => p.id === product.id), 1, product);
+            .findIndex((prod) => prod.id === product.id), 1, product);
         });
     }
   }
@@ -50,7 +50,7 @@ export class ProductRepository {
     this.restDataSource.deleteProduct(id)
       .subscribe((p) => {
         this.products.splice(
-          this.products.findIndex((p) => p.id === id, 1)
+          this.products.findIndex((prod) => prod.id === id, 1)
         );
       });
   }

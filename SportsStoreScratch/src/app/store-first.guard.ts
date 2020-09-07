@@ -17,8 +17,8 @@ export class StoreFirstGuard implements CanActivate {
     if (this.firstNavigation) {
       this.firstNavigation = false;
       if (route.component !== StoreComponent) {
-        // this.router.navigateByUrl('/');
-        // result = false;
+        this.router.navigateByUrl('/');
+        result = false;
       }
     }
     return result;
