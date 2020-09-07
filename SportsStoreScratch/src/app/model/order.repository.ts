@@ -12,12 +12,11 @@ export class OrderRepository {
   }
 
   loadOrders() {
-      this.restDataSource.getOrders()
-        .subscribe((orders) => {
-          this.orders = orders;
-          this.loaded = true;
-        });
+    this.loaded = true;
+    this.restDataSource.getOrders()
+      .subscribe(orders => this.orders = orders);
   }
+
   getOrders(): Order[] {
     if (!this.loaded) {
       this.loadOrders();
@@ -51,5 +50,11 @@ export class OrderRepository {
           this.orders.findIndex((p) => p.id === id, 1)
         );
       });
+  }
+
+  updateOrder(order: Order) {
+    this.restDataSource.updateOrder(order).subscribe(order => {
+      this.orders.splice(this.orders.findIndex(o => o.id == order.id), 1, order);
+    });
   }
 }
