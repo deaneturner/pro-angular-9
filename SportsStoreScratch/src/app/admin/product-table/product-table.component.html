@@ -1,3 +1,6 @@
+<div class="bg-info text-white p-2">
+  Selected Product: {{ selectedProduct || '(None)' }}
+</div>
 <table class="table table-sm table-striped">
   <thead>
   <tr>
@@ -5,8 +8,8 @@
   </tr>
   </thead>
   <tbody>
-  <tr *ngFor="let product of getProducts()">
-    <td>{{product.id}}</td>
+  <tr *ngFor="let product of getProducts()" [class.bg-info]="getSelected(product)">
+    <td (mouseover)="selectedProduct=product.name">{{product.id}}</td>
     <td>{{product.name}}</td>
     <td>{{product.category}}</td>
     <td>{{product.price | currency:'USD':'symbol':'2.2-2'}}</td>

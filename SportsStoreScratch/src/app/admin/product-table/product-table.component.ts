@@ -11,10 +11,10 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductTableComponent implements OnInit {
   editing = false;
   product = new Product();
+  selectedProduct: string
 
   constructor(private productRepository: ProductRepository, activeRoute: ActivatedRoute) {
     this.editing = activeRoute.snapshot.params['mode'] === 'edit';
-
   }
 
   ngOnInit(): void {
@@ -26,5 +26,9 @@ export class ProductTableComponent implements OnInit {
 
   deleteProduct(id: number) {
     this.productRepository.deleteProduct(id);
+  }
+
+  getSelected(product: Product): boolean {
+    return product.name == this.selectedProduct;
   }
 }
