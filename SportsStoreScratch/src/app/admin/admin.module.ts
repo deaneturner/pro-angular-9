@@ -7,7 +7,7 @@ import { AuthGuard } from '../auth.guard';
 import { ProductTableComponent } from './product-table/product-table.component';
 import { ProductEditorComponent } from './product-editor/product-editor.component';
 import { OrderTableComponent } from './order-table/order-table.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const router = RouterModule.forChild([
   {path: 'auth', component: AuthComponent},
@@ -26,7 +26,8 @@ const router = RouterModule.forChild([
   imports: [
     CommonModule,
     FormsModule,
-    router
+    router,
+    ReactiveFormsModule
   ],
   declarations: [AdminComponent, ProductTableComponent, ProductEditorComponent, OrderTableComponent],
   providers: [AuthGuard]

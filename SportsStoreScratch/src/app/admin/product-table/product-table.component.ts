@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../../model/product.model';
 import { ProductRepository } from '../../model/product.repository';
 import { ActivatedRoute } from '@angular/router';
+import { ProductFormGroup } from '../../model/product.form.model';
 
 @Component({
   selector: 'app-product-table',
@@ -11,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductTableComponent implements OnInit {
   editing = false;
   product = new Product();
-  selectedProduct: string
+  selectedProduct: string;
 
   constructor(private productRepository: ProductRepository, activeRoute: ActivatedRoute) {
     this.editing = activeRoute.snapshot.params['mode'] === 'edit';

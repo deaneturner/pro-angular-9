@@ -1,0 +1,62 @@
+<div class="bg-primary p-2 text-white"
+     [class.bg-warning]="editing" [class.text-dark]="editing">
+  <h5>{{editing ? "Edit" : "Create"}} Product</h5>
+</div>
+<form novalidate class="m-2" [formGroup]="formGroup" (ngSubmit)="submitForm()">
+  <div class="bg-danger text-white p-2 mb-2" *ngIf="formSubmitted && formGroup.invalid">
+    There are problems with the form
+    <ul>
+      <li *ngFor="let error of formGroup.getFormValidationMessages()">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <div class="form-group">
+    <label>Name</label>
+    <input class="form-control" name="name" formControlName="name"/>
+    <ul class="text-danger list-unstyled"
+    *ngIf="formSubmitted && formGroup.controls['name'].dirty && formGroup.controls['name'].invalid">
+      <li *ngFor="let error of formGroup.getValidationMessages('name')">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <div class="form-group">
+    <label>Category</label>
+    <input class="form-control" name="category" formControlName="category"/>
+    <ul class="text-danger list-unstyled"
+        *ngIf="formSubmitted && formGroup.controls['category'].dirty && formGroup.controls['category'].invalid">
+      <li *ngFor="let error of formGroup.getValidationMessages('category')">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <div class="form-group">
+    <label>Description</label>
+    <textarea class="form-control" name="description" formControlName="description"></textarea>
+    <ul class="text-danger list-unstyled"
+        *ngIf="formSubmitted && formGroup.controls['description'].dirty && formGroup.controls['description'].invalid">
+      <li *ngFor="let error of formGroup.getValidationMessages('description')">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <div class="form-group">
+    <label>Price</label>
+    <input class="form-control" name="price" formControlName="price"/>
+    <ul class="text-danger list-unstyled"
+        *ngIf="formSubmitted && formGroup.controls['price'].dirty && formGroup.controls['price'].invalid">
+      <li *ngFor="let error of formGroup.getValidationMessages('price')">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+  <button type="submit" class="btn btn-primary m-1" [class.btn-warning]="editing"
+          [disabled]="formSubmitted && formGroup.invalid"
+          [class.btn-secondary]="formSubmitted && formGroup.invalid">
+    {{ editing ? 'Save' : 'Create' }}
+  </button>
+  <button type="reset" class="btn btn-secondary m1" routerLink="/admin/main/products">
+    Cancel
+  </button>
+</form>

@@ -20,7 +20,7 @@ export class CheckoutComponent implements OnInit {
 
   submitOrder(form: NgForm) {
     this.submitted = true;
-    if(form.valid) {
+    if (form.valid) {
       this.orderRepository.saveOrders(this.order)
         .subscribe(() => {
           this.order.clear();
