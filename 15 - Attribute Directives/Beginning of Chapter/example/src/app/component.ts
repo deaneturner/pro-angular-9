@@ -1,34 +1,35 @@
-import { ApplicationRef, Component } from "@angular/core";
-import { NgForm, FormGroup } from "@angular/forms";
-import { Model } from "./repository.model";
-import { Product } from "./product.model";
-import { ProductFormGroup, ProductFormControl } from "./form.model";
+import { ApplicationRef, Component } from '@angular/core';
+import { NgForm, FormGroup } from '@angular/forms';
+import { Model } from './repository.model';
+import { Product } from './product.model';
+import { ProductFormGroup, ProductFormControl } from './form.model';
 
 @Component({
-    selector: "app",
-    templateUrl: "template.html"
+  // tslint:disable-next-line:component-selector
+  selector: 'app',
+  templateUrl: 'template.html'
 })
 export class ProductComponent {
-    model: Model = new Model();
-    formGroup: ProductFormGroup = new ProductFormGroup();
+  model: Model = new Model();
+  formGroup: ProductFormGroup = new ProductFormGroup();
 
-    getProduct(key: number): Product {
-        return this.model.getProduct(key);
-    }
+  newProduct: Product = new Product();
 
-    getProducts(): Product[] {
-        return this.model.getProducts();
-    }
+  formSubmitted = false;
 
-    newProduct: Product = new Product();
+  getProduct(key: number): Product {
+    return this.model.getProduct(key);
+  }
 
-    addProduct(p: Product) {
-        this.model.saveProduct(p);
-    }
+  getProducts(): Product[] {
+    return this.model.getProducts();
+  }
 
-    formSubmitted: boolean = false;
+  addProduct(p: Product) {
+    this.model.saveProduct(p);
+  }
 
-    submitForm() {
-        this.addProduct(this.newProduct);
-    }    
+  submitForm() {
+    this.addProduct(this.newProduct);
+  }
 }
